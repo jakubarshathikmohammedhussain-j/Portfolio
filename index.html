@@ -111,25 +111,27 @@
     </nav>
   </header>
 
-  <!-- ==================== BULLETPROOF HERO SECTION ==================== -->
-  <section id="hero" class="relative w-full h-[100dvh] bg-[#050505] overflow-hidden flex flex-col justify-end items-center">
+    <!-- ==================== BULLETPROOF HERO SECTION ==================== -->
+  <section id="hero" class="relative w-full h-[100dvh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden">
     
-    <!-- Massive Background Text -->
-    <div class="absolute top-[35%] md:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none px-2">
-      <h1 class="text-[18vw] md:text-[15vw] font-black leading-none hero-text-bg tracking-tighter" data-aos="zoom-in" data-aos-duration="2000">PORTFOLIO</h1>
-      <p class="text-brand-accent text-[8px] md:text-xs font-mono tracking-[0.4em] uppercase mt-2 opacity-80" data-aos="fade-up" data-aos-delay="400">Autonomous Operations & Tech Strategy</p>
+    <!-- Massive Background Text - Absolutely Centered -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center z-0 pointer-events-none mt-[-10vh]">
+      <h1 class="text-[22vw] md:text-[16vw] font-black leading-none hero-text-bg tracking-tighter" data-aos="zoom-in" data-aos-duration="2000">PORTFOLIO</h1>
+      <p class="text-brand-accent text-[8px] md:text-xs font-mono tracking-[0.4em] uppercase mt-4 opacity-80" data-aos="fade-up" data-aos-delay="400">Autonomous Operations & Tech Strategy</p>
     </div>
 
-    <!-- Subject Image (MUST BE TRANSPARENT PNG) -->
-    <img 
-      src="hero-portrait.png" 
-      alt="Mohammed Hussain" 
-      class="absolute bottom-0 z-10 h-[65vh] md:h-[80vh] w-auto object-contain object-bottom filter contrast-125 pointer-events-none"
-      data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"
-    />
+    <!-- Subject Image - Absolutely bottom aligned, forced to overlap text -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[70vh] md:h-[85vh] flex justify-center z-10 pointer-events-none">
+      <img 
+        src="hero-portrait.png" 
+        alt="Mohammed Hussain" 
+        class="h-full w-auto object-contain object-bottom filter contrast-125 drop-shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+        data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"
+      />
+    </div>
 
-    <!-- Executive HUD Badge -->
-    <div class="relative z-20 w-full max-w-lg mx-4 mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="800">
+    <!-- Executive HUD Badge - Hovering Above Image -->
+    <div class="absolute bottom-6 md:bottom-12 z-20 w-full max-w-lg px-4" data-aos="fade-up" data-aos-delay="800">
       <div class="flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl bg-brand-surface/80 backdrop-blur-xl border border-brand-border neon-glow transition-all shadow-2xl">
         <div class="flex-1 text-center sm:text-left">
           <div class="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
@@ -145,6 +147,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- ==================== EXECUTIVE INTRO ==================== -->
   <section id="about" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border">
