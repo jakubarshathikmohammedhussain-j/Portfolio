@@ -145,16 +145,35 @@
         </div>
       </h2>
 
-            <!-- Official LinkedIn Badge Container -->
-      <div class="relative flex justify-center items-center w-full" data-aos="fade-up" data-aos-delay="400">
+                  <!-- Custom Centered LinkedIn Card (Replaces the broken official widget) -->
+      <div class="relative flex justify-center items-center w-full mt-6 px-4" data-aos="fade-up" data-aos-delay="400">
         <!-- Ambient Background Glow -->
         <div class="absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-brand-accent/10 rounded-full blur-[80px] animate-pulse pointer-events-none"></div>
-        
-        <!-- Live LinkedIn Widget (Forced to Centered/Medium Layout) -->
-        <div class="relative z-10 shadow-[0_0_40px_rgba(204,255,0,0.15)] rounded-lg overflow-hidden border border-brand-border hover:border-brand-accent/50 transition-colors bg-[#000000]">
-          <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="mohammedhussainj" data-version="v1">
-            <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/mohammedhussainj?trk=profile-badge">Mohammed Hussain J</a>
+
+        <!-- Custom Card -->
+        <div class="relative z-10 w-full max-w-[320px] rounded-2xl bg-[#0a0a0c] border border-[#1f1f26] shadow-[0_0_40px_rgba(204,255,0,0.15)] p-6 flex flex-col items-center text-center transition-all hover:border-[#0a66c2]/50">
+          
+          <!-- Top Row -->
+          <div class="w-full flex justify-between items-center mb-4">
+             <span class="text-[9px] font-mono font-bold text-gray-500 uppercase tracking-widest">Verified Profile</span>
+             <i data-lucide="linkedin" class="w-4 h-4 text-[#0a66c2]"></i>
           </div>
+          
+          <!-- Profile Image -->
+          <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-[#1f1f26] mb-4">
+            <img src="about-portrait.png" onerror="this.src='hero-portrait.png'" alt="Mohammed Hussain J" class="w-full h-full object-cover filter contrast-125 grayscale" />
+          </div>
+          
+          <!-- Text Data -->
+          <h3 class="text-lg font-black text-white tracking-tight">Mohammed Hussain J</h3>
+          <p class="text-[10px] text-gray-400 mt-2 font-mono leading-relaxed px-2">
+            Operations & Tech Strategy Consultant | MBA (Data Analytics & Operations)
+          </p>
+          
+          <!-- Connect Button -->
+          <a href="https://in.linkedin.com/in/mohammedhussainj" target="_blank" class="mt-6 w-full py-3 rounded-xl bg-[#0a66c2] text-white hover:bg-[#004182] transition-colors font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-[#0a66c2]/20">
+            View Profile
+          </a>
         </div>
       </div>
       
