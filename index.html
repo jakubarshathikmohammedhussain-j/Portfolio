@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>MOHAMMED HUSSAIN J | Operations & Tech Strategy Consultant</title>
   
   <!-- Fonts & Icons -->
@@ -12,7 +12,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- AOS Animation Engine CSS -->
+  <!-- AOS Animation Engine -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <script>
@@ -28,7 +28,8 @@
               border: '#1f1f26',
               accent: '#ccff00', 
               cyan: '#00f0ff',
-              emerald: '#10b981'
+              emerald: '#10b981',
+              rose: '#ff3366'
             }
           },
           fontFamily: {
@@ -48,33 +49,21 @@
     }
     
     .bg-grid-pattern {
-      background-size: 50px 50px;
+      background-size: 40px 40px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     }
 
-    /* True Layered Hero Typography */
-    .hero-huge-text {
-      font-size: clamp(4rem, 18vw, 18rem);
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      line-height: 0.8;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.01) 100%);
+    .hero-text-bg {
+      background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.00) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       user-select: none;
     }
 
-    /* Bottom fade mask for images */
-    .mask-bottom-fade {
-      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%);
-      mask-image: linear-gradient(to top, transparent 0%, black 15%);
-    }
-
     .neon-glow:hover {
-      box-shadow: 0 0 25px -5px rgba(204, 255, 0, 0.4);
+      box-shadow: 0 0 25px -5px rgba(204, 255, 0, 0.3);
       border-color: #ccff00;
     }
 
@@ -86,137 +75,114 @@
 </head>
 <body class="bg-grid-pattern antialiased selection:bg-brand-accent selection:text-black">
 
-  <!-- Background Music Audio Tag (Dark Ambient Drone) -->
+  <!-- Background Audio -->
   <audio id="bg-music" loop preload="auto">
-    <!-- Using a royalty-free cinematic ambient track -->
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=dark-ambient-drone-7313.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Audio Splash Gate -->
-  <div id="audio-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-2xl transition-all duration-1000">
-    <div class="max-w-md w-full mx-4 p-10 rounded-2xl bg-brand-surface border border-brand-border text-center transform transition-all hover:scale-[1.02]">
-      <div class="w-20 h-20 mx-auto mb-8 rounded-full bg-brand-accent/10 border border-brand-accent flex items-center justify-center animate-pulse">
-        <i data-lucide="power" class="w-10 h-10 text-brand-accent"></i>
+  <div id="audio-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl transition-all duration-700">
+    <div class="max-w-md w-full mx-4 p-8 rounded-2xl bg-brand-surface border border-brand-border text-center">
+      <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-brand-accent/10 border border-brand-accent flex items-center justify-center animate-pulse">
+        <i data-lucide="power" class="w-8 h-8 text-brand-accent"></i>
       </div>
-      <h2 class="text-3xl font-black font-mono text-white mb-3 tracking-widest uppercase">HOLO CORE OS</h2>
-      <p class="text-gray-400 text-xs font-mono uppercase tracking-widest mb-8 leading-relaxed">
-        Warning: This interface contains high-fidelity audio, background telemetry, and physical scroll animations.
-      </p>
-      <button id="gate-btn" class="w-full py-4 rounded-xl bg-brand-accent text-black font-black uppercase text-sm tracking-[0.2em] hover:bg-[#b8e600] transition-all transform active:scale-95 flex items-center justify-center gap-3">
-        Initialize Sequence <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      <h2 class="text-2xl font-black font-mono text-white mb-2 tracking-widest uppercase">HOLO CORE OS</h2>
+      <p class="text-gray-400 text-xs font-mono uppercase tracking-widest mb-8">Initialize terminal for audio & telemetry.</p>
+      <button id="gate-btn" class="w-full py-4 rounded-xl bg-brand-accent text-black font-black uppercase text-xs tracking-widest hover:bg-[#b8e600] transition-all flex items-center justify-center gap-2">
+        Initialize Sequence <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </button>
     </div>
   </div>
 
-  <!-- Persistent Audio Controls -->
-  <div class="fixed top-6 right-6 z-40 flex items-center gap-3" data-aos="fade-down" data-aos-delay="1000">
-    <button id="sound-toggle-btn" class="px-5 py-2.5 rounded-full bg-brand-surface/90 backdrop-blur-xl border border-brand-border text-xs font-mono font-bold flex items-center gap-2 hover:border-brand-accent transition-all text-gray-300 shadow-xl">
+  <!-- Audio HUD -->
+  <div class="fixed top-6 right-4 md:right-6 z-40 flex items-center" data-aos="fade-down" data-aos-delay="1000">
+    <button id="sound-toggle-btn" class="px-4 py-2.5 rounded-full bg-brand-surface/90 backdrop-blur-md border border-brand-border text-[10px] md:text-xs font-mono font-bold flex items-center gap-2 text-gray-300">
       <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
       <span id="sound-status-text">SYS.AUDIO: ON</span>
-      <i data-lucide="radio" class="w-4 h-4 text-brand-accent"></i>
     </button>
   </div>
 
   <!-- Top Navigation -->
-  <header class="fixed top-6 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-2xl" data-aos="fade-down" data-aos-delay="1200">
-    <nav class="flex items-center justify-center px-6 py-4 rounded-full bg-brand-surface/80 backdrop-blur-xl border border-brand-border shadow-2xl">
-      <a href="#hero" class="font-mono font-black tracking-[0.3em] text-sm text-white hover:text-brand-accent transition-colors flex items-center gap-2">
-        <span class="text-brand-accent animate-pulse">_</span>HUSSAIN.CORE
+  <header class="fixed top-6 left-1/2 -translate-x-1/2 z-40 w-max" data-aos="fade-down" data-aos-delay="1200">
+    <nav class="flex items-center justify-center px-6 py-3.5 rounded-full bg-brand-surface/90 backdrop-blur-md border border-brand-border">
+      <a href="#hero" class="font-mono font-black tracking-[0.2em] text-xs text-white flex items-center gap-2">
+        <span class="text-brand-accent">_</span>HUSSAIN.CORE
       </a>
     </nav>
   </header>
 
-  <!-- ==================== CINEMATIC HERO SECTION ==================== -->
-  <section id="hero" class="relative w-full h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
+  <!-- ==================== BULLETPROOF HERO SECTION ==================== -->
+  <section id="hero" class="relative w-full h-[100dvh] bg-[#050505] overflow-hidden flex flex-col justify-end items-center">
     
-    <!-- Deep Background Typography Layer (Absolute Center) -->
-    <div class="absolute inset-0 z-0 flex flex-col items-center justify-center pointer-events-none mt-10">
-      <h1 class="hero-huge-text" data-aos="zoom-in" data-aos-duration="2500" data-aos-delay="200">PORTFOLIO</h1>
-      <p class="text-brand-accent text-xs md:text-sm font-mono tracking-[0.4em] uppercase mt-2 opacity-80" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
-        Autonomous Operations & Tech Strategy
-      </p>
+    <!-- Massive Background Text -->
+    <div class="absolute top-[35%] md:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none px-2">
+      <h1 class="text-[18vw] md:text-[15vw] font-black leading-none hero-text-bg tracking-tighter" data-aos="zoom-in" data-aos-duration="2000">PORTFOLIO</h1>
+      <p class="text-brand-accent text-[8px] md:text-xs font-mono tracking-[0.4em] uppercase mt-2 opacity-80" data-aos="fade-up" data-aos-delay="400">Autonomous Operations & Tech Strategy</p>
     </div>
 
-    <!-- Foreground Subject Image Layer (Overlapping the text) -->
-    <!-- CRITICAL: For this to work perfectly, hero-portrait.png MUST have a transparent background -->
-    <div class="relative z-10 w-full h-[85%] flex items-end justify-center pointer-events-none pb-24 md:pb-12">
-      <img 
-        src="hero-portrait.png" 
-        alt="Mohammed Hussain" 
-        class="h-[80%] md:h-[95%] w-auto object-contain object-bottom mask-bottom-fade drop-shadow-[0_20px_50px_rgba(0,0,0,1)] pointer-events-auto filter contrast-125"
-        data-aos="fade-up" 
-        data-aos-duration="2000" 
-        data-aos-delay="400"
-      />
-    </div>
+    <!-- Subject Image (MUST BE TRANSPARENT PNG) -->
+    <img 
+      src="hero-portrait.png" 
+      alt="Mohammed Hussain" 
+      class="absolute bottom-0 z-10 h-[65vh] md:h-[80vh] w-auto object-contain object-bottom filter contrast-125 pointer-events-none"
+      data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"
+    />
 
-    <!-- Executive HUD Badge (Front Layer) -->
-    <div class="absolute bottom-8 md:bottom-12 z-20 w-full px-4 flex justify-center" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
-      <div class="flex flex-col sm:flex-row items-center gap-4 p-5 md:p-6 rounded-2xl bg-brand-surface/95 backdrop-blur-2xl border border-brand-border shadow-[0_0_40px_rgba(0,0,0,0.8)] neon-glow w-full max-w-xl transition-all">
+    <!-- Executive HUD Badge -->
+    <div class="relative z-20 w-full max-w-lg mx-4 mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="800">
+      <div class="flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl bg-brand-surface/80 backdrop-blur-xl border border-brand-border neon-glow transition-all shadow-2xl">
         <div class="flex-1 text-center sm:text-left">
           <div class="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse"></span>
-            <span class="text-[10px] font-mono uppercase text-brand-accent tracking-[0.2em] font-bold">Active Executive Terminal</span>
+            <span class="text-[9px] font-mono uppercase text-brand-accent tracking-widest font-bold">Active Terminal</span>
           </div>
-          <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Mohammed Hussain J</h2>
-          <p class="text-[11px] md:text-xs text-gray-400 mt-1 uppercase tracking-wider font-mono">Operations & Tech Strategy | MBA</p>
+          <h2 class="text-lg md:text-xl font-black text-white tracking-tight">Mohammed Hussain J</h2>
+          <p class="text-[10px] md:text-xs text-gray-400 mt-1 uppercase tracking-wider font-mono">Operations & Tech Strategy | MBA</p>
         </div>
-        <div class="flex items-center gap-3">
-          <button onclick="speakProfileSummary()" class="px-4 py-3 rounded-xl bg-brand-card border border-brand-border text-brand-accent hover:bg-brand-accent hover:text-black transition-all flex items-center gap-2 text-xs font-mono font-bold group">
-            <i data-lucide="play" class="w-4 h-4 group-hover:fill-current"></i> Briefing
-          </button>
-        </div>
+        <button onclick="speakProfileSummary()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-brand-card border border-brand-border text-brand-accent hover:bg-brand-accent hover:text-black transition-colors flex items-center justify-center gap-2 text-xs font-mono font-bold">
+          <i data-lucide="play" class="w-4 h-4"></i> Audio Briefing
+        </button>
       </div>
     </div>
   </section>
 
   <!-- ==================== EXECUTIVE INTRO ==================== -->
-  <section id="about" class="py-32 px-6 max-w-6xl mx-auto border-t border-brand-border/30">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-      <!-- Animated Image Wrapper -->
-      <div class="relative w-full rounded-3xl overflow-hidden border border-brand-border" data-aos="fade-right" data-aos-duration="1500">
-        <div class="absolute inset-0 bg-brand-accent/5 mix-blend-overlay z-10 pointer-events-none"></div>
-        <img 
-          src="about-portrait.png" 
-          class="w-full h-[500px] object-cover filter contrast-125 grayscale hover:grayscale-0 transition-all duration-1000 transform hover:scale-105"
-        />
-        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-8 z-20">
-          <span class="text-brand-accent font-mono text-[10px] uppercase tracking-[0.3em] font-bold">Systems Architect</span>
-          <h3 class="text-2xl font-black text-white uppercase tracking-wider mt-1">Holo Earth Core</h3>
+  <section id="about" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="relative w-full rounded-3xl overflow-hidden border border-brand-border group" data-aos="fade-right">
+        <img src="about-portrait.png" class="w-full h-[400px] md:h-[500px] object-cover filter contrast-125 grayscale group-hover:grayscale-0 transition-all duration-700" />
+        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 z-20">
+          <span class="text-brand-accent font-mono text-[10px] uppercase tracking-widest font-bold">Systems Architect</span>
+          <h3 class="text-xl font-black text-white uppercase mt-1">Holo Earth Core</h3>
         </div>
       </div>
 
-      <!-- Animated Text Reveal -->
-      <div class="space-y-8">
-        <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-brand-surface border border-brand-border text-gray-300 text-xs font-mono uppercase tracking-widest" data-aos="fade-left" data-aos-duration="1000">
-          <span class="w-2 h-2 bg-brand-cyan rounded-full animate-pulse"></span> Initializing Summary
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-surface border border-brand-border text-gray-300 text-[10px] font-mono uppercase tracking-widest" data-aos="fade-left">
+          <span class="w-1.5 h-1.5 bg-brand-cyan rounded-full animate-pulse"></span> Executive Summary
         </div>
-        
-        <h2 class="text-4xl md:text-5xl font-black text-white leading-[1.1] tracking-tight" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+        <h2 class="text-3xl md:text-4xl font-black text-white leading-tight" data-aos="fade-left" data-aos-delay="100">
           Architecting High-Velocity Operational Infrastructure.
         </h2>
-        
-        <p class="text-gray-400 text-lg leading-relaxed" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-          Traditional operations suffer from severe data latency—reacting to geopolitical friction, market volatility, and regulatory shifts after they happen. 
+        <p class="text-gray-400 text-sm md:text-base leading-relaxed" data-aos="fade-left" data-aos-delay="200">
+          Traditional operations suffer from severe data latency—reacting to geopolitical friction, market volatility, and regulatory shifts after they happen. My focus is engineering the transition from reactive strategy to deterministic, autonomous operations.
         </p>
-        
-        <p class="text-gray-500 text-sm leading-relaxed font-mono" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-          My focus is engineering the transition from reactive strategy to deterministic, autonomous operations. Rather than waiting, I developed a multi-node, AI-driven infrastructure commanded by hands-free voice reconnaissance layers.
+        <p class="text-gray-500 text-xs md:text-sm leading-relaxed font-mono" data-aos="fade-left" data-aos-delay="300">
+          As the architect behind <strong class="text-white">HOLO EARTH CORE</strong>, I develop multi-node AI pipelines commanded by voice reconnaissance layers, automating forensic audits, and visualizing enterprise IT spend leakage.
         </p>
 
-        <!-- Stats Matrix -->
-        <div class="grid grid-cols-3 gap-4 pt-6 font-mono" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-          <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border neon-glow transition-all">
-            <span class="text-3xl font-black text-brand-accent">06+</span>
-            <p class="text-[9px] text-gray-500 uppercase tracking-widest mt-2">Autonomous Nodes</p>
+        <div class="grid grid-cols-3 gap-3 pt-4 font-mono" data-aos="fade-up" data-aos-delay="400">
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border text-center">
+            <span class="text-2xl font-black text-brand-accent">06+</span>
+            <p class="text-[8px] text-gray-500 uppercase tracking-widest mt-1">Nodes</p>
           </div>
-          <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border neon-glow transition-all">
-            <span class="text-3xl font-black text-brand-cyan">15%</span>
-            <p class="text-[9px] text-gray-500 uppercase tracking-widest mt-2">Latency Reduction</p>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border text-center">
+            <span class="text-2xl font-black text-brand-cyan">15%</span>
+            <p class="text-[8px] text-gray-500 uppercase tracking-widest mt-1">Faster</p>
           </div>
-          <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border neon-glow transition-all">
-            <span class="text-3xl font-black text-white">Zero</span>
-            <p class="text-[9px] text-gray-500 uppercase tracking-widest mt-2">Cost Cloud Native</p>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border text-center">
+            <span class="text-2xl font-black text-white">0</span>
+            <p class="text-[8px] text-gray-500 uppercase tracking-widest mt-1">Cost Cloud</p>
           </div>
         </div>
       </div>
@@ -224,122 +190,200 @@
   </section>
 
   <!-- ==================== CORE DEPLOYMENTS ==================== -->
-  <section id="projects" class="py-32 px-6 max-w-6xl mx-auto border-t border-brand-border/30">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6" data-aos="fade-up">
-      <div>
-        <span class="text-brand-accent font-mono text-[10px] uppercase tracking-[0.3em] font-bold block mb-3">// Production Deployments</span>
-        <h2 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight">Core Autonomous Nodes</h2>
-      </div>
-      <p class="text-gray-500 text-xs font-mono max-w-sm uppercase tracking-wider leading-relaxed">
-        Click the audio brief button on any node to initiate automated synthetic voice telemetry regarding the architecture.
-      </p>
+  <section id="projects" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border">
+    <div class="mb-16 text-center md:text-left" data-aos="fade-up">
+      <span class="text-brand-accent font-mono text-[10px] uppercase tracking-widest font-bold block mb-2">// Production Deployments</span>
+      <h2 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tight mb-4">Core Autonomous Nodes</h2>
+      <p class="text-gray-500 text-xs font-mono uppercase tracking-wider mx-auto md:mx-0 max-w-md">Click the audio brief button on any node to initiate automated synthetic voice telemetry.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
-      <!-- NODE 1 -->
-      <div class="rounded-3xl bg-brand-surface border border-brand-border p-8 flex flex-col justify-between neon-glow transition-all duration-500 transform hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="100">
+      <!-- J.A.R.V.I.S. -->
+      <div class="rounded-2xl bg-brand-surface border border-brand-border p-6 flex flex-col justify-between hover:border-brand-accent transition-colors group" data-aos="fade-up" data-aos-delay="100">
         <div>
-          <div class="flex items-center justify-between mb-8">
-            <span class="font-mono text-[10px] font-black text-brand-accent tracking-widest px-3 py-1.5 rounded bg-brand-accent/10 border border-brand-accent/30">NODE 01</span>
-            <button onclick="speakProjectBriefing('jarvis')" class="p-2.5 rounded-lg bg-brand-card hover:bg-brand-accent hover:text-black text-brand-accent border border-brand-border transition-all flex items-center gap-2 text-xs font-mono">
-              <i data-lucide="radio" class="w-4 h-4"></i> Audio Brief
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[10px] font-black text-brand-accent tracking-widest px-2 py-1 rounded bg-brand-accent/10">NODE 01</span>
+            <button onclick="speakProjectBriefing('jarvis')" class="p-2 rounded md:bg-transparent bg-brand-card hover:text-black hover:bg-brand-accent text-brand-accent border border-brand-border transition-all flex items-center gap-1.5 text-[10px] font-mono">
+              <i data-lucide="radio" class="w-3 h-3"></i> Audio Brief
             </button>
           </div>
-          <h3 class="text-3xl font-black text-white mb-3 tracking-tight">J.A.R.V.I.S.</h3>
-          <p class="text-xs font-mono text-brand-cyan mb-6 tracking-wider">Voice Interface Layer</p>
-          <p class="text-gray-400 text-sm leading-relaxed mb-8">
-            An autonomous conversational orchestrator acting as the primary voice interface for the HOLO EARTH ecosystem. Features instant voice command ingestion and hands-free telemetry.
-          </p>
+          <h3 class="text-2xl font-black text-white mb-2">J.A.R.V.I.S.</h3>
+          <p class="text-xs font-mono text-brand-cyan mb-4">Voice Interface Layer</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">Autonomous desktop & mobile conversational orchestrator acting as the primary voice interface for the HOLO EARTH ecosystem.</p>
         </div>
-        <a href="https://jakubarshathikmohammedhussain-j.github.io/JARVIS/" target="_blank" class="w-full py-4 rounded-xl bg-brand-accent text-black font-black text-center text-xs uppercase tracking-[0.2em] hover:bg-[#b8e600] transition-colors flex items-center justify-center gap-2">
-          Initialize Node <i data-lucide="external-link" class="w-4 h-4"></i>
+        <a href="https://jakubarshathikmohammedhussain-j.github.io/JARVIS/" target="_blank" class="w-full py-3 rounded-xl bg-brand-accent text-black font-black text-center text-[10px] uppercase tracking-widest hover:bg-[#b8e600] transition-colors flex items-center justify-center gap-2">
+          Initialize Demo <i data-lucide="external-link" class="w-3 h-3"></i>
         </a>
       </div>
 
-      <!-- NODE 2 -->
-      <div class="rounded-3xl bg-brand-surface border border-brand-border p-8 flex flex-col justify-between neon-glow transition-all duration-500 transform hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="200">
+      <!-- B.L.E.E.D. -->
+      <div class="rounded-2xl bg-brand-surface border border-brand-border p-6 flex flex-col justify-between hover:border-brand-rose transition-colors group" data-aos="fade-up" data-aos-delay="200">
         <div>
-          <div class="flex items-center justify-between mb-8">
-            <span class="font-mono text-[10px] font-black text-[#ff3366] tracking-widest px-3 py-1.5 rounded bg-[#ff3366]/10 border border-[#ff3366]/30">NODE 02</span>
-            <button onclick="speakProjectBriefing('bleed')" class="p-2.5 rounded-lg bg-brand-card hover:bg-[#ff3366] hover:text-white text-[#ff3366] border border-brand-border transition-all flex items-center gap-2 text-xs font-mono">
-              <i data-lucide="radio" class="w-4 h-4"></i> Audio Brief
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[10px] font-black text-brand-rose tracking-widest px-2 py-1 rounded bg-brand-rose/10">NODE 02</span>
+            <button onclick="speakProjectBriefing('bleed')" class="p-2 rounded md:bg-transparent bg-brand-card hover:text-white hover:bg-brand-rose text-brand-rose border border-brand-border transition-all flex items-center gap-1.5 text-[10px] font-mono">
+              <i data-lucide="radio" class="w-3 h-3"></i> Audio Brief
             </button>
           </div>
-          <h3 class="text-3xl font-black text-white mb-3 tracking-tight">B.L.E.E.D.</h3>
-          <p class="text-xs font-mono text-[#ff3366] mb-6 tracking-wider">Expense Diagnostic</p>
-          <p class="text-gray-400 text-sm leading-relaxed mb-8">
-            Enterprise forensic auditor engineered to ingest corporate master service agreements and raw CSV logs to autonomously detect SLA compliance breaches.
-          </p>
+          <h3 class="text-2xl font-black text-white mb-2">B.L.E.E.D.</h3>
+          <p class="text-xs font-mono text-brand-rose mb-4">Expense Diagnostic</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">Enterprise forensic auditor designed to ingest corporate master service agreements and raw CSV logs to autonomously detect SLA compliance breaches.</p>
         </div>
-        <a href="https://bleed-protocol.streamlit.app/" target="_blank" class="w-full py-4 rounded-xl bg-brand-card border border-brand-border hover:border-[#ff3366] text-white font-black text-center text-xs uppercase tracking-[0.2em] transition-colors flex items-center justify-center gap-2">
-          Launch Auditor <i data-lucide="activity" class="w-4 h-4"></i>
+        <a href="https://bleed-protocol.streamlit.app/" target="_blank" class="w-full py-3 rounded-xl bg-brand-accent text-black font-black text-center text-[10px] uppercase tracking-widest hover:bg-[#b8e600] transition-colors flex items-center justify-center gap-2">
+          Launch Auditor <i data-lucide="activity" class="w-3 h-3"></i>
         </a>
       </div>
 
-      <!-- NODE 3 -->
-      <div class="rounded-3xl bg-brand-surface border border-brand-border p-8 flex flex-col justify-between neon-glow transition-all duration-500 transform hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="300">
+      <!-- S.C.A.M. -->
+      <div class="rounded-2xl bg-brand-surface border border-brand-border p-6 flex flex-col justify-between hover:border-brand-emerald transition-colors group" data-aos="fade-up" data-aos-delay="300">
         <div>
-          <div class="flex items-center justify-between mb-8">
-            <span class="font-mono text-[10px] font-black text-brand-emerald tracking-widest px-3 py-1.5 rounded bg-brand-emerald/10 border border-brand-emerald/30">NODE 03</span>
-            <button onclick="speakProjectBriefing('scam')" class="p-2.5 rounded-lg bg-brand-card hover:bg-brand-emerald hover:text-black text-brand-emerald border border-brand-border transition-all flex items-center gap-2 text-xs font-mono">
-              <i data-lucide="radio" class="w-4 h-4"></i> Audio Brief
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[10px] font-black text-brand-emerald tracking-widest px-2 py-1 rounded bg-brand-emerald/10">NODE 03</span>
+            <button onclick="speakProjectBriefing('scam')" class="p-2 rounded md:bg-transparent bg-brand-card hover:text-black hover:bg-brand-emerald text-brand-emerald border border-brand-border transition-all flex items-center gap-1.5 text-[10px] font-mono">
+              <i data-lucide="radio" class="w-3 h-3"></i> Audio Brief
             </button>
           </div>
-          <h3 class="text-3xl font-black text-white mb-3 tracking-tight">S.C.A.M.</h3>
-          <p class="text-xs font-mono text-brand-emerald mb-6 tracking-wider">Architecture Monitor</p>
-          <p class="text-gray-400 text-sm leading-relaxed mb-8">
-            AI-powered enterprise analytics designed to detect software redundancy and calculate wasted run-rate spend. Operates as an automated Corporate CIO.
-          </p>
+          <h3 class="text-2xl font-black text-white mb-2">S.C.A.M.</h3>
+          <p class="text-xs font-mono text-brand-emerald mb-4">Architecture Monitor</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">AI-powered enterprise analytics designed to detect software redundancy and calculate wasted run-rate spend. Operates as an automated Corporate CIO.</p>
         </div>
-        <a href="https://scam-protocol.streamlit.app/?token=holo-earth" target="_blank" class="w-full py-4 rounded-xl bg-brand-card border border-brand-border hover:border-brand-emerald text-white font-black text-center text-xs uppercase tracking-[0.2em] transition-colors flex items-center justify-center gap-2">
-          Access CIO <i data-lucide="shield" class="w-4 h-4"></i>
+        <a href="https://scam-protocol.streamlit.app/?token=holo-earth" target="_blank" class="w-full py-3 rounded-xl bg-brand-accent text-black font-black text-center text-[10px] uppercase tracking-widest hover:bg-[#b8e600] transition-colors flex items-center justify-center gap-2">
+          Access CIO <i data-lucide="shield" class="w-3 h-3"></i>
         </a>
+      </div>
+    </div>
+
+    <!-- HOLO EARTH Banner -->
+    <div class="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-r from-brand-surface to-brand-card border border-brand-border flex flex-col md:flex-row items-center justify-between gap-6" data-aos="zoom-in">
+      <div class="text-center md:text-left">
+        <span class="text-[10px] font-mono text-brand-accent uppercase tracking-widest font-bold">// Ecosystem</span>
+        <h3 class="text-xl md:text-2xl font-black text-white mt-1">HOLO EARTH CORE</h3>
+        <p class="text-xs text-gray-400 mt-2">Connecting Nodes 01 through 06 into a deterministic autonomous OS.</p>
+      </div>
+      <a href="https://drive.google.com/drive/folders/1EENo3X0PBlnPYDCqN0almgqLtyUfOcci" target="_blank" class="w-full md:w-auto px-6 py-4 rounded-xl bg-brand-accent text-black font-bold uppercase text-[10px] tracking-widest hover:bg-[#b8e600] transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+        Access Core Vault <i data-lucide="database" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </section>
+    <!-- ==================== SKILLS / SYSTEMS ==================== -->
+  <section id="services" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border">
+    <div class="mb-12 text-center md:text-left" data-aos="fade-up">
+      <span class="text-brand-accent font-mono text-[10px] uppercase tracking-widest font-bold block mb-2">// Capability Index</span>
+      <h2 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">Systems Strategy</h2>
+    </div>
+
+    <div class="space-y-4">
+      <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-accent/50 transition-colors" data-aos="fade-up" data-aos-delay="100">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-[10px] text-brand-accent tracking-widest">01 // OPERATIONS</span>
+          <i data-lucide="layers" class="w-4 h-4 text-gray-500"></i>
+        </div>
+        <h4 class="text-lg font-bold text-white mb-2">Autonomous Operations & Management Consulting</h4>
+        <p class="text-xs md:text-sm text-gray-400">Eliminating operational data latency, architecting Supply Chain Risk Management (SCRM) protocols, process optimization, and deterministic workflow governance.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-cyan/50 transition-colors" data-aos="fade-up" data-aos-delay="200">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-[10px] text-brand-cyan tracking-widest">02 // AI ORCHESTRATION</span>
+          <i data-lucide="terminal" class="w-4 h-4 text-gray-500"></i>
+        </div>
+        <h4 class="text-lg font-bold text-white mb-2">LLM Architecture & Prompt Engineering</h4>
+        <p class="text-xs md:text-sm text-gray-400">Multi-modal Gemini API integration, strict JSON schema enforcement, Chain-of-Thought (CoT) reasoning frameworks, and dynamic Voice User Interface (VUI) design.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-emerald/50 transition-colors" data-aos="fade-up" data-aos-delay="300">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-[10px] text-brand-emerald tracking-widest">03 // DATA TOPOGRAPHY</span>
+          <i data-lucide="bar-chart-3" class="w-4 h-4 text-gray-500"></i>
+        </div>
+        <h4 class="text-lg font-bold text-white mb-2">Business Intelligence (BI) & Financial Modeling</h4>
+        <p class="text-xs md:text-sm text-gray-400">Automated SQL data modeling, Power BI dashboards, Tableau visualization, Pandas pipeline automation, and quantitative intrinsic capital variance tracking.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPERIENCE & ACADEMICS ==================== -->
+  <section id="credentials" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Experience -->
+      <div data-aos="fade-right">
+        <div class="mb-8">
+          <span class="text-brand-accent font-mono text-[10px] uppercase tracking-widest font-bold block mb-2">// History</span>
+          <h3 class="text-2xl font-black text-white uppercase">Operational Experience</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <h4 class="text-base font-bold text-white">Operations & Systems Architect</h4>
+            <p class="text-[10px] font-mono text-brand-accent mt-1 mb-3">HOLO EARTH · Aug 2026 - Present</p>
+            <p class="text-xs text-gray-400 leading-relaxed">Architecting zero-cost enterprise OS with continuous macro-logistics recon nodes (SENTINEL, GHOST) and overseas maritime evaluation engines (O.M.E.G.A.).</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <h4 class="text-base font-bold text-white">Logistics Operations Intern</h4>
+            <p class="text-[10px] font-mono text-brand-cyan mt-1 mb-3">JP Freight Forwarders · May 2025 - Jun 2025</p>
+            <p class="text-xs text-gray-400 leading-relaxed">Audited cargo documentation workflows, eliminating handoff bottlenecks and improving cross-functional data transfer velocity by 15%.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academics -->
+      <div data-aos="fade-left">
+        <div class="mb-8">
+          <span class="text-brand-accent font-mono text-[10px] uppercase tracking-widest font-bold block mb-2">// Track Record</span>
+          <h3 class="text-2xl font-black text-white uppercase">Education & Credentials</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <span class="text-[9px] font-mono text-brand-accent uppercase font-bold">Post-Graduate Candidate</span>
+            <h4 class="text-base font-bold text-white mt-1">Master of Business Administration (MBA)</h4>
+            <p class="text-xs text-gray-400 mt-2">Anna University · Data Science, Analytics & AI in Management</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <span class="text-[9px] font-mono text-brand-cyan uppercase font-bold">Graduated</span>
+            <h4 class="text-base font-bold text-white mt-1">Bachelor of Commerce (B.Com)</h4>
+            <p class="text-xs text-gray-400 mt-2">University of Madras · Business Automation & Data Analysis</p>
+          </div>
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex flex-wrap gap-2 text-[10px] font-mono text-gray-400">
+            <span class="px-2 py-1 rounded bg-brand-surface border border-brand-border">AWS Solutions Architecture</span>
+            <span class="px-2 py-1 rounded bg-brand-surface border border-brand-border">Deloitte Data Analytics</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ==================== FOOTER ==================== -->
-  <footer class="py-32 px-6 max-w-6xl mx-auto border-t border-brand-border text-center overflow-hidden">
-    <h2 class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-6" data-aos="zoom-in" data-aos-duration="1500">
+  <footer class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border text-center overflow-hidden">
+    <h2 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4" data-aos="zoom-in">
       LET'S BUILD DETERMINISTIC SYSTEMS.
     </h2>
-    <p class="text-gray-500 text-sm font-mono max-w-xl mx-auto mb-12 uppercase tracking-widest leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+    <p class="text-gray-500 text-xs font-mono max-w-md mx-auto mb-10 uppercase tracking-widest leading-relaxed" data-aos="fade-up" data-aos-delay="200">
       Open for strategic management consulting and enterprise digital transformation advisory.
     </p>
 
-    <div class="flex flex-wrap items-center justify-center gap-6 mb-16" data-aos="fade-up" data-aos-delay="400">
-      <a href="https://drive.google.com/drive/folders/1EENo3X0PBlnPYDCqN0almgqLtyUfOcci" target="_blank" class="px-8 py-5 rounded-2xl bg-brand-accent text-black font-black uppercase text-xs tracking-[0.2em] hover:bg-[#b8e600] transition-all transform hover:scale-105 flex items-center gap-3 shadow-[0_0_30px_rgba(204,255,0,0.3)]">
-        <i data-lucide="database" class="w-5 h-5"></i> Access Holo Core
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="400">
+      <a href="mailto:jakubarshathikmohammedhussain@gmail.com" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-brand-accent text-black font-black uppercase text-[10px] tracking-widest hover:bg-[#b8e600] transition-transform active:scale-95 flex items-center justify-center gap-2">
+        <i data-lucide="mail" class="w-4 h-4"></i> Contact Terminal
       </a>
-      <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="px-8 py-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-white text-white font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-3">
-        <i data-lucide="github" class="w-5 h-5"></i> GitHub
+      <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-brand-surface border border-brand-border hover:border-white text-white font-mono text-[10px] font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2">
+        <i data-lucide="github" class="w-4 h-4"></i> GitHub
       </a>
-      <a href="https://www.linkedin.com/in/mohammedhussainj" target="_blank" class="px-8 py-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-[#0a66c2] text-white font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-3">
-        <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
+      <a href="https://www.linkedin.com/in/mohammedhussainj" target="_blank" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-brand-surface border border-brand-border hover:border-[#0a66c2] text-white font-mono text-[10px] font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2">
+        <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
       </a>
     </div>
   </footer>
 
-  <!-- AOS Engine Init & Audio Logic -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-        // Initialize Scroll Animations
-    AOS.init({
-      once: false, // Animations repeat when scrolling up and down
-      mirror: true,
-      offset: 50,
-    });
-    
-    // Initialize Icons
+    AOS.init({ once: false, mirror: true, offset: 50 });
     lucide.createIcons();
 
-    // Core Audio Engine Logic
     let soundEnabled = false;
     const bgMusic = document.getElementById('bg-music');
-    bgMusic.volume = 0.3; // Low background volume
+    bgMusic.volume = 0.3;
 
-    // Play UI Sound function
     function playTick() {
       if (!soundEnabled) return;
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -356,12 +400,10 @@
       osc.stop(ctx.currentTime + 0.05);
     }
 
-    // Attach UI sounds
     document.querySelectorAll('a, button').forEach(el => {
       el.addEventListener('mouseenter', playTick);
     });
 
-    // Deep Voice Heuristic
     function getDeepMaleVoice() {
       const voices = window.speechSynthesis.getVoices();
       let selected = voices.find(v => (v.name.includes('Male') || v.name.includes('David') || v.name.includes('UK English')) && v.lang.startsWith('en'));
@@ -371,14 +413,12 @@
     function speakProfileSummary() {
       if (!('speechSynthesis' in window)) return;
       window.speechSynthesis.cancel();
-      bgMusic.volume = 0.1; // Duck background music during speech
-
+      bgMusic.volume = 0.1;
       const utterance = new SpeechSynthesisUtterance("Initializing executive overview. I am Mohammed Hussain, architecting deterministic, autonomous operational systems to eliminate supply chain data latency.");
       utterance.voice = getDeepMaleVoice();
       utterance.pitch = 0.8; 
       utterance.rate = 0.95;
-      
-      utterance.onend = () => { bgMusic.volume = 0.3; }; // Restore volume
+      utterance.onend = () => { bgMusic.volume = 0.3; };
       window.speechSynthesis.speak(utterance);
     }
 
@@ -386,35 +426,28 @@
       if (!('speechSynthesis' in window)) return;
       window.speechSynthesis.cancel();
       bgMusic.volume = 0.1;
-
       let text = "";
       if (project === 'jarvis') text = "Node 01: J.A.R.V.I.S. Online. Voice interface layer established for hands-free telemetry operations.";
       if (project === 'bleed') text = "Node 02: B.L.E.E.D. Protocol executing. Commencing automated forensic extraction of SLA capital leakage.";
       if (project === 'scam') text = "Node 03: S.C.A.M. System active. Calculating software run-rate waste and shadow I.T. metrics.";
-
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.voice = getDeepMaleVoice();
       utterance.pitch = 0.8;
       utterance.rate = 0.95;
       utterance.onend = () => { bgMusic.volume = 0.3; };
-      
       window.speechSynthesis.speak(utterance);
     }
 
-    // Initialization Sequence
     document.getElementById('gate-btn').addEventListener('click', () => {
       soundEnabled = true;
-      bgMusic.play().catch(e => console.log("Audio play failed:", e));
-      
+      bgMusic.play().catch(e => console.log(e));
       const gate = document.getElementById('audio-gate');
       gate.style.opacity = '0';
       gate.style.pointerEvents = 'none';
-      setTimeout(() => gate.remove(), 1000);
-
+      setTimeout(() => gate.remove(), 700);
       setTimeout(speakProfileSummary, 800);
     });
 
-    // Toggle Audio HUD
     const toggleBtn = document.getElementById('sound-toggle-btn');
     const statusText = document.getElementById('sound-status-text');
     toggleBtn.addEventListener('click', () => {
@@ -431,7 +464,6 @@
       }
     });
 
-    // Ensure voices load
     if ('speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = getDeepMaleVoice;
     }
