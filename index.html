@@ -120,11 +120,11 @@
     </button>
   </div>
 
-  <!-- Top Navigation -->
-  <header class="fixed top-6 left-1/2 -translate-x-1/2 z-40 w-max" data-aos="fade-down" data-aos-delay="1200">
-    <nav class="flex items-center justify-center px-6 py-3.5 rounded-full bg-brand-surface/90 backdrop-blur-md border border-brand-border">
-      <a href="#hero" class="font-mono font-black tracking-[0.2em] text-xs text-white flex items-center gap-2">
-        <span class="text-brand-accent">_</span>HUSSAIN.CORE
+    <!-- Top Navigation (Moved to Top Left) -->
+  <header class="fixed top-6 left-4 md:left-6 z-40 w-max" data-aos="fade-down" data-aos-delay="1200">
+    <nav class="flex items-center justify-center px-5 py-3 rounded-full bg-brand-surface/90 backdrop-blur-md border border-brand-border shadow-lg">
+      <a href="#hero" class="font-mono font-black tracking-[0.2em] text-[10px] md:text-xs text-white hover:text-brand-accent transition-colors flex items-center gap-2">
+        <span class="text-brand-accent animate-pulse">_</span>HUSSAIN.CORE
       </a>
     </nav>
   </header>
@@ -408,16 +408,23 @@
       Open for strategic management consulting and enterprise digital transformation advisory.
     </p>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="400">
-      <a href="mailto:jakubarshathikmohammedhussain@gmail.com" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-brand-accent text-black font-black uppercase text-[10px] tracking-widest hover:bg-[#b8e600] transition-transform active:scale-95 flex items-center justify-center gap-2">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="400">
+      
+      <!-- Contact Button -->
+      <a href="mailto:jakubarshathikmohammedhussain@gmail.com" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-accent text-black font-black uppercase text-[10px] tracking-widest hover:bg-[#b8e600] transition-transform active:scale-95 flex items-center justify-center gap-3 shadow-[0_0_15px_rgba(204,255,0,0.2)]">
         <i data-lucide="mail" class="w-4 h-4"></i> Contact Terminal
       </a>
-      <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-brand-surface border border-brand-border hover:border-white text-white font-mono text-[10px] font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2">
+      
+      <!-- GitHub Button -->
+      <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-accent text-black font-black uppercase text-[10px] tracking-widest hover:bg-[#b8e600] transition-transform active:scale-95 flex items-center justify-center gap-3 shadow-[0_0_15px_rgba(204,255,0,0.2)]">
         <i data-lucide="github" class="w-4 h-4"></i> GitHub
       </a>
-      <a href="https://www.linkedin.com/in/mohammedhussainj" target="_blank" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-brand-surface border border-brand-border hover:border-[#0a66c2] text-white font-mono text-[10px] font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2">
+      
+      <!-- LinkedIn Button -->
+      <a href="https://www.linkedin.com/in/mohammedhussainj" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-accent text-black font-black uppercase text-[10px] tracking-widest hover:bg-[#b8e600] transition-transform active:scale-95 flex items-center justify-center gap-3 shadow-[0_0_15px_rgba(204,255,0,0.2)]">
         <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
       </a>
+
     </div>
   </footer>
 
