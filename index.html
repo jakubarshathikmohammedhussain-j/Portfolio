@@ -1,337 +1,640 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammed Hussain J | Enterprise Architecture</title>
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- GSAP for Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOHAMMED HUSSAIN J | Operations & Tech Strategy Consultant</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#070708',
+              surface: '#0e0e11',
+              card: '#141418',
+              border: '#23232b',
+              accent: '#ccff00', /* Signature Cyber Neon */
+              cyan: '#00f0ff',
+              emerald: '#10b981'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #070708;
+      color: #f3f4f6;
+      overflow-x: hidden;
+    }
     
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
-        
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #050505;
-            color: #ffffff;
-            overflow-x: hidden;
-            cursor: crosshair;
-        }
+    /* Background Cyber Grid */
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    /* Huge Hero Typography Masking */
+    .hero-bg-text {
+      font-size: clamp(3.5rem, 14vw, 15rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.85;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.02) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      user-select: none;
+    }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
+    /* Glow Effects */
+    .accent-glow {
+      box-shadow: 0 0 35px -5px rgba(204, 255, 0, 0.35);
+    }
+    .neon-border {
+      border: 1px solid rgba(204, 255, 0, 0.25);
+    }
+    .neon-border:hover {
+      border-color: #ccff00;
+      box-shadow: 0 0 20px rgba(204, 255, 0, 0.2);
+    }
 
-        .text-glow {
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Cinematic Red Intro Overlay matching the reference video */
-        #intro-screen {
-            position: fixed;
-            inset: 0;
-            background: #e60012;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .hud-line {
-            width: 1px;
-            height: 100vh;
-            background: rgba(255,255,255,0.05);
-            position: fixed;
-            top: 0;
-            z-index: -1;
-        }
-
-        .skill-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-tag:hover {
-            background: rgba(255, 255, 255, 1);
-            color: #000;
-        }
-    </style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #070708; }
+    ::-webkit-scrollbar-thumb { background: #23232b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #ccff00; }
+  </style>
 </head>
-<body class="antialiased selection:bg-white selection:text-black">
+<body class="bg-grid-pattern antialiased selection:bg-brand-accent selection:text-black">
 
-    <!-- HUD Background Lines -->
-    <div class="hud-line" style="left: 20%"></div>
-    <div class="hud-line" style="left: 50%"></div>
-    <div class="hud-line" style="left: 80%"></div>
+  <!-- Audio Splash Gate (Required to satisfy browser audio autoplay policies) -->
+  <div id="audio-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl transition-opacity duration-700">
+    <div class="max-w-md w-full mx-4 p-8 rounded-2xl bg-brand-surface border border-brand-border text-center shadow-2xl">
+      <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-brand-accent/10 border border-brand-accent flex items-center justify-center">
+        <i data-lucide="volume-2" class="w-8 h-8 text-brand-accent"></i>
+      </div>
+      <h2 class="text-2xl font-bold font-mono text-white mb-2 tracking-wide uppercase">HOLO EARTH INTELLIGENCE OS</h2>
+      <p class="text-gray-400 text-sm mb-6">Autonomous systems console ready. Audio briefing & tactical sound effects synthesized natively.</p>
+      <button id="gate-btn" class="w-full py-3.5 px-6 rounded-xl bg-brand-accent text-black font-bold uppercase tracking-wider hover:bg-[#b8e600] transition-all transform active:scale-95 flex items-center justify-center gap-2">
+        <i data-lucide="play" class="w-4 h-4 fill-current"></i> Initialize System Briefing
+      </button>
+    </div>
+  </div>
 
-    <!-- Cinematic Intro Card (Fades & Opens like the video reference) -->
-    <div id="intro-screen">
-        <div class="text-center px-4">
-            <p class="text-white/80 tracking-[0.4em] text-xs md:text-sm uppercase mb-3 font-medium">POV : When your architecture outperforms your resume. 🔥</p>
-            <h1 id="intro-name" class="text-5xl md:text-8xl font-black tracking-tighter text-white uppercase opacity-0 transform translate-y-4">
-                Mohammed Hussain
-            </h1>
-            <p class="text-white/70 tracking-widest text-xs md:text-sm uppercase mt-6">"Click to Initialize Protocol & Audio System"</p>
-            <button id="init-btn" class="ui-interact mt-8 bg-black text-white px-10 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-2xl">
-                Enter Portfolio Core
-            </button>
-        </div>
+  <!-- Audio State HUD Indicator -->
+  <div class="fixed top-6 right-6 z-40 flex items-center gap-3">
+    <button id="sound-toggle-btn" class="px-4 py-2 rounded-full bg-brand-surface/80 backdrop-blur-md border border-brand-border text-xs font-mono flex items-center gap-2 hover:border-brand-accent transition-all text-gray-300">
+      <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+      <span id="sound-status-text">AUDIO ON</span>
+      <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+    </button>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="fixed top-6 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-4xl">
+    <nav class="flex items-center justify-between px-6 py-3.5 rounded-full bg-brand-surface/75 backdrop-blur-xl border border-brand-border shadow-2xl">
+      <a href="#hero" class="font-mono font-black tracking-widest text-lg text-white hover:text-brand-accent transition-colors flex items-center gap-2">
+        <span class="text-brand-accent">//</span> HUSSAIN
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-gray-400">
+        <a href="#about" class="hover:text-brand-accent transition-colors nav-link">Intro</a>
+        <a href="#services" class="hover:text-brand-accent transition-colors nav-link">Systems</a>
+        <a href="#projects" class="hover:text-brand-accent transition-colors nav-link">Deployments</a>
+        <a href="#credentials" class="hover:text-brand-accent transition-colors nav-link">Track Record</a>
+      </div>
+      <a href="https://drive.google.com/drive/folders/1EENo3X0PBlnPYDCqN0almgqLtyUfOcci" target="_blank" class="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-brand-accent text-black hover:bg-[#b8e600] transition-transform active:scale-95 flex items-center gap-1.5">
+        HOLO CORE <i data-lucide="external-link" class="w-3 h-3"></i>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="relative min-h-screen flex items-end justify-center pt-32 pb-0 px-4 overflow-hidden">
+    <!-- Big Layered Text In Background -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0">
+      <h1 class="hero-bg-text select-none">PORTFOLIO</h1>
+      <span class="text-xs font-mono tracking-[0.4em] uppercase text-gray-600 mt-2">AUTONOMOUS OPERATIONS & TECH STRATEGY</span>
     </div>
 
-    <!-- Main Content Dashboard -->
-    <main id="main-content" class="opacity-0 hidden">
-        
-        <!-- Hero & Executive Summary Section -->
-        <section class="min-h-screen flex flex-col justify-center px-8 md:px-24 py-32 relative">
-            <p class="gsap-reveal text-sm tracking-[0.3em] text-gray-400 uppercase mb-4">Operations & Tech Strategy Consultant | MBA (Data Analytics & Operations)[span_0](start_span)[span_0](end_span)</p>
-            <h1 class="gsap-reveal text-5xl md:text-8xl font-bold tracking-tighter mb-8 text-glow uppercase">
-                Mohammed <br> Hussain J.
-            </h1>
-            
-            <div class="gsap-reveal max-w-4xl border-l-2 border-white/20 pl-6 space-y-6 text-gray-300 text-lg md:text-xl leading-relaxed">
-                <p>
-                    I architect high-velocity operational infrastructure at the intersection of global technology strategy, business intelligence, and data analytics[span_1](start_span)[span_1](end_span). Traditional business operations suffer from severe data latency—they react to geopolitical friction, market volatility, and regulatory shifts after they happen[span_2](start_span)[span_2](end_span). My focus is engineering the transition from reactive corporate strategy to deterministic, autonomous operations[span_3](start_span)[span_3](end_span).
-                </p>
-                <p>
-                    Rather than waiting for my MBA to begin, I developed HOLO EARTH CORE: a multi-node, AI-driven infrastructure framework built natively via mobile prompting and LLM architectures[span_4](start_span)[span_4](end_span). Commanded by a hands-free voice interface layer (J.A.R.V.I.S.), the ecosystem acts as a continuous global reconnaissance framework—tracking macro-logistics friction, automating quantitative financial heuristics, and optimizing downstream deep-link navigation[span_5](start_span)[span_5](end_span).
-                </p>
-                <p>
-                    Backed by a background in Commerce and hands-on systems architecture, I am an incoming post-graduate candidate in Data Analytics & Operations[span_6](start_span)[span_6](end_span). I am currently targeting strategic planning, tech strategy, and management consulting roles—specifically focusing on high-growth digital transformation, business operations, and automated risk mitigation across global enterprise markets[span_7](start_span)[span_7](end_span).
-                </p>
+    <!-- Center Portrait Image with Depth Stacking -->
+    <div class="relative z-10 max-w-lg w-full flex flex-col items-center">
+      <div class="relative group">
+        <!-- Ambient Back Glow -->
+        <div class="absolute -inset-1 bg-gradient-to-t from-brand-accent/20 to-transparent rounded-full blur-2xl opacity-60"></div>
+        <img 
+          src="hero-portrait.png" 
+          alt="Mohammed Hussain" 
+          class="relative w-72 sm:w-96 md:w-[420px] object-cover filter contrast-125 drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] transition-all duration-700 group-hover:scale-[1.02]"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80';"
+        />
+      </div>
+
+      <!-- Hero Floating Badges Layered in Front (Z-index 20) -->
+      <div class="w-full relative -mt-8 z-20 pb-12">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-border shadow-2xl">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+              <span class="text-xs font-mono uppercase text-brand-accent tracking-wider font-semibold">Active Executive Terminal</span>
             </div>
-            
-            <div class="gsap-reveal mt-12 flex flex-wrap gap-6">
-                <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="ui-interact bg-white text-black px-8 py-3 font-bold uppercase tracking-wider hover:bg-gray-300 transition-colors">
-                    View GitHub
-                </a>
-                <a href="https://drive.google.com/drive/folders/1EENo3X0PBlnPYDCqN0almgqLtyUfOcci" target="_blank" class="ui-interact border border-white px-8 py-3 font-bold uppercase tracking-wider hover:bg-white/10 transition-colors">
-                    Holo Earth Core Nodes
-                </a>
+            <h2 class="text-xl font-bold text-white tracking-tight">Mohammed Hussain J</h2>
+            <p class="text-xs text-gray-400">Operations & Tech Strategy Consultant | MBA (Data Analytics)</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="speakProfileSummary()" class="p-3 rounded-xl bg-brand-card border border-brand-border text-brand-accent hover:border-brand-accent transition-all flex items-center gap-2 text-xs font-mono" title="Replay Audio Welcome">
+              <i data-lucide="play-circle" class="w-4 h-4"></i> Play Audio Briefing
+            </button>
+            <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="p-3 rounded-xl bg-brand-accent text-black font-bold hover:bg-[#b8e600] transition-transform active:scale-95">
+              <i data-lucide="github" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXECUTIVE INTRO & ABOUT ==================== -->
+  <section id="about" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border/40">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Portrait Card -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative rounded-3xl overflow-hidden border border-brand-border bg-brand-surface group">
+          <img 
+            src="about-portrait.png" 
+            alt="Mohammed Hussain Portrait" 
+            class="w-full h-auto object-cover filter contrast-110 grayscale group-hover:grayscale-0 transition-all duration-700"
+            onerror="this.onerror=null; this.src='hero-portrait.png';"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-6">
+            <span class="text-brand-accent font-mono text-xs uppercase tracking-wider font-bold">Systems Architect</span>
+            <h3 class="text-xl font-bold text-white">HOLO EARTH Architecture</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Executive Pitch -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-mono uppercase tracking-widest">
+          <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Executive Summary
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+          Architecting High-Velocity Operational Infrastructure.
+        </h2>
+        <p class="text-gray-300 text-base leading-relaxed">
+          Traditional enterprise business operations suffer from severe data latency—reacting to geopolitical friction, market volatility, and regulatory shifts after they materialize.
+        </p>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          My focus is engineering the transition from reactive corporate operations to deterministic, autonomous systems. As the architect behind <strong class="text-white">HOLO EARTH CORE</strong>, I develop multi-node AI pipelines commanded by voice reconnaissance layers (<strong class="text-brand-accent">J.A.R.V.I.S.</strong>), automating forensic audits (<strong class="text-brand-accent">B.L.E.E.D.</strong>), and visualizing enterprise IT spend leakage (<strong class="text-brand-accent">S.C.A.M.</strong>).
+        </p>
+
+        <!-- Stats Matrix -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 font-mono">
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+            <span class="text-2xl font-black text-brand-accent">06+</span>
+            <p class="text-xs text-gray-400 uppercase mt-1">Autonomous Nodes</p>
+          </div>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+            <span class="text-2xl font-black text-brand-cyan">15%</span>
+            <p class="text-xs text-gray-400 uppercase mt-1">Dispatch Latency Cut</p>
+          </div>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border col-span-2 sm:col-span-1">
+            <span class="text-2xl font-black text-white">0-Cost</span>
+            <p class="text-xs text-gray-400 uppercase mt-1">Cloud Native OS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CORE DEPLOYMENTS (FEATURED PROJECTS) ==================== -->
+  <section id="projects" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border/40">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div>
+        <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">// Production Deployments</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">Core Autonomous Nodes</h2>
+      </div>
+      <p class="text-gray-400 text-xs font-mono max-w-sm">
+        Click the audio speaker icon on each project card for an instant executive voice briefing of that deployment.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- PROJECT 1: J.A.R.V.I.S. -->
+      <div class="rounded-2xl bg-brand-surface border border-brand-border p-6 flex flex-col justify-between neon-border transition-all duration-300 group">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-xs font-bold text-brand-accent px-2.5 py-1 rounded bg-brand-accent/10 border border-brand-accent/30">NODE 01</span>
+            <button onclick="speakProjectBriefing('jarvis')" class="p-2 rounded-lg bg-brand-card hover:bg-brand-accent hover:text-black text-brand-accent border border-brand-border transition-colors flex items-center gap-1.5 text-xs font-mono">
+              <i data-lucide="volume-2" class="w-4 h-4"></i> Brief
+            </button>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">J.A.R.V.I.S.</h3>
+          <p class="text-xs font-mono text-brand-cyan mb-4">Hands-Free Voice Interface Layer & Assistant</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            An autonomous desktop & mobile conversational orchestrator acting as the primary voice interface for the HOLO EARTH ecosystem. Features instant voice command ingestion, hands-free telemetry, and automated task execution.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-8 text-[11px] font-mono text-gray-400">
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">Voice UI (VUI)</span>
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">Gemini LLM</span>
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">JavaScript</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 pt-4 border-t border-brand-border">
+          <a href="https://jakubarshathikmohammedhussain-j.github.io/JARVIS/" target="_blank" class="flex-1 py-2.5 rounded-xl bg-brand-accent text-black font-bold text-center text-xs uppercase tracking-wider hover:bg-[#b8e600] transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Launch Demo
+          </a>
+          <a href="https://github.com/jakubarshathikmohammedhussain-j/JARVIS" target="_blank" class="p-2.5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-accent text-white transition-colors">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 2: B.L.E.E.D. PROTOCOL -->
+      <div class="rounded-2xl bg-brand-surface border border-brand-border p-6 flex flex-col justify-between neon-border transition-all duration-300 group">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-xs font-bold text-brand-accent px-2.5 py-1 rounded bg-brand-accent/10 border border-brand-accent/30">NODE 02</span>
+            <button onclick="speakProjectBriefing('bleed')" class="p-2 rounded-lg bg-brand-card hover:bg-brand-accent hover:text-black text-brand-accent border border-brand-border transition-colors flex items-center gap-1.5 text-xs font-mono">
+              <i data-lucide="volume-2" class="w-4 h-4"></i> Brief
+            </button>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">B.L.E.E.D. Protocol</h3>
+          <p class="text-xs font-mono text-red-400 mb-4">Back-end Legal Evaluation & Expense Diagnostic</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Multi-modal enterprise forensic auditor designed to ingest corporate master service agreements (MSAs) and raw log data to autonomously compute financial capital leakage and SLA breach penalties.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-8 text-[11px] font-mono text-gray-400">
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">Python / Streamlit</span>
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">Forensic Math</span>
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">Pandas</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 pt-4 border-t border-brand-border">
+          <a href="https://bleed-protocol.streamlit.app/" target="_blank" class="flex-1 py-2.5 rounded-xl bg-brand-accent text-black font-bold text-center text-xs uppercase tracking-wider hover:bg-[#b8e600] transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="activity" class="w-3.5 h-3.5"></i> Launch Auditor
+          </a>
+          <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="p-2.5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-accent text-white transition-colors">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 3: S.C.A.M. SYSTEM -->
+      <div class="rounded-2xl bg-brand-surface border border-brand-border p-6 flex flex-col justify-between neon-border transition-all duration-300 group">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-xs font-bold text-brand-accent px-2.5 py-1 rounded bg-brand-accent/10 border border-brand-accent/30">NODE 03</span>
+            <button onclick="speakProjectBriefing('scam')" class="p-2 rounded-lg bg-brand-card hover:bg-brand-accent hover:text-black text-brand-accent border border-brand-border transition-colors flex items-center gap-1.5 text-xs font-mono">
+              <i data-lucide="volume-2" class="w-4 h-4"></i> Brief
+            </button>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">S.C.A.M. System</h3>
+          <p class="text-xs font-mono text-emerald-400 mb-4">Software Cost & Architecture Monitor</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Enterprise analytics engine detecting software redundancy and calculating wasted run-rate spend. Operates as an automated corporate CIO with hierarchical treemap visualizations and zero-trust authentication.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-8 text-[11px] font-mono text-gray-400">
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">Plotly Treemaps</span>
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">LLM Schema</span>
+            <span class="px-2 py-1 rounded bg-brand-card border border-brand-border">Ghost Token</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 pt-4 border-t border-brand-border">
+                    <a href="https://scam-protocol.streamlit.app/?token=holo-earth" target="_blank" class="flex-1 py-2.5 rounded-xl bg-brand-accent text-black font-bold text-center text-xs uppercase tracking-wider hover:bg-[#b8e600] transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Access CIO Node
+          </a>
+          <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="p-2.5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-accent text-white transition-colors">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HOLO EARTH Central Ecosystem Banner -->
+    <div class="mt-12 p-8 rounded-3xl bg-gradient-to-r from-brand-surface via-brand-card to-brand-surface border border-brand-border relative overflow-hidden">
+      <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-mono text-brand-accent uppercase tracking-widest font-semibold">// Full Multi-Node Architecture</span>
+          <h3 class="text-2xl font-black text-white mt-1">HOLO EARTH CORE — Enterprise Ecosystem</h3>
+          <p class="text-sm text-gray-400 max-w-2xl mt-2">
+            Connecting Nodes 01 through 06 (A.L.L.D.A.Y, BLAST, GHOST, SENTINEL, RICH, O.M.E.G.A) into a single deterministic autonomous OS.
+          </p>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1EENo3X0PBlnPYDCqN0almgqLtyUfOcci" target="_blank" class="whitespace-nowrap px-8 py-4 rounded-xl bg-brand-accent text-black font-extrabold uppercase text-xs tracking-wider hover:bg-[#b8e600] shadow-lg accent-glow transition-all flex items-center gap-2">
+          Open Architecture Vault <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS & CAPABILITIES ACCORDION MATRIX ==================== -->
+  <section id="services" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border/40">
+    <div class="mb-16">
+      <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">// Capability Index</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">Systems Engineering & Strategy</h2>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Matrix 01 -->
+      <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-accent/50 transition-colors">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-xs text-brand-accent">01 // OPERATIONS & STRATEGY</span>
+          <i data-lucide="layers" class="w-5 h-5 text-gray-400"></i>
+        </div>
+        <h4 class="text-xl font-bold text-white mb-2">Autonomous Operations & Management Consulting</h4>
+        <p class="text-sm text-gray-400">Eliminating operational data latency, architecting Supply Chain Risk Management (SCRM) protocols, Six Sigma process optimization, and deterministic workflow governance.</p>
+      </div>
+
+      <!-- Matrix 02 -->
+      <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-accent/50 transition-colors">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-xs text-brand-cyan">02 // AI ORCHESTRATION</span>
+          <i data-lucide="terminal" class="w-5 h-5 text-gray-400"></i>
+        </div>
+        <h4 class="text-xl font-bold text-white mb-2">LLM Architecture & Prompt Engineering</h4>
+        <p class="text-sm text-gray-400">Multi-modal Gemini API integration, strict JSON schema enforcement, Chain-of-Thought (CoT) reasoning frameworks, and dynamic Voice User Interface (VUI) design.</p>
+      </div>
+
+      <!-- Matrix 03 -->
+      <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-accent/50 transition-colors">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-mono text-xs text-brand-emerald">03 // DATA TOPOGRAPHY</span>
+          <i data-lucide="bar-chart-3" class="w-5 h-5 text-gray-400"></i>
+        </div>
+        <h4 class="text-xl font-bold text-white mb-2">Business Intelligence (BI) & Financial Modeling</h4>
+        <p class="text-sm text-gray-400">Automated SQL data modeling, Power BI dashboards, Tableau visualization, Pandas pipeline automation, and quantitative intrinsic capital variance tracking.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPERIENCE & ACADEMICS ==================== -->
+  <section id="credentials" class="py-24 px-6 max-w-6xl mx-auto border-t border-brand-border/40">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Experience Track -->
+      <div>
+        <div class="mb-8">
+          <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">// History</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-white uppercase">Operational Experience</h3>
+        </div>
+        <div class="space-y-6">
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h4 class="text-lg font-bold text-white">Operations & Systems Architect</h4>
+                <p class="text-xs font-mono text-brand-accent">HOLO EARTH · Chennai, India</p>
+              </div>
+              <span class="text-xs font-mono text-gray-500">Aug 2026 - Present</span>
             </div>
-        </section>
+            <p class="text-sm text-gray-400 leading-relaxed mt-2">
+              Architecting zero-cost enterprise OS with continuous macro-logistics recon nodes (SENTINEL, GHOST) and overseas maritime evaluation engines (O.M.E.G.A.).
+            </p>
+          </div>
 
-        <!-- Core Expertise Matrix -->
-        <section class="min-h-screen px-8 md:px-24 py-24 bg-white/5 border-y border-white/10">
-            <div class="flex justify-between items-end mb-16 border-b border-white/20 pb-8">
-                <h2 class="gsap-reveal text-4xl md:text-6xl font-bold uppercase tracking-tight">Core Expertise Matrix</h2>
-                <p class="gsap-reveal hidden md:block text-gray-400 tracking-widest uppercase text-sm">Operating systems for modern enterprise velocity[span_8](start_span)[span_8](end_span).</p>
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h4 class="text-lg font-bold text-white">Logistics Operations Intern</h4>
+                <p class="text-xs font-mono text-brand-cyan">JP Freight Forwarders · Chennai, India</p>
+              </div>
+              <span class="text-xs font-mono text-gray-500">May 2025 - Jun 2025</span>
             </div>
+            <p class="text-sm text-gray-400 leading-relaxed mt-2">
+              Audited cargo documentation workflows, eliminating handoff bottlenecks and improving cross-functional data transfer velocity by 15%.
+            </p>
+          </div>
+        </div>
+      </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                <!-- Skill Node 01 -->
-                <div class="gsap-reveal glass-panel p-8 group hover:border-white/40 transition-all duration-300">
-                    <span class="text-xs text-gray-500 tracking-widest mb-4 block">01</span>
-                    <h3 class="text-2xl font-bold mb-4">Management & Operations</h3>
-                    <p class="text-gray-400">Jira Architecture, Six Sigma Process Optimization, Advanced Financial Modeling, Logistics Management, Supply Chain Automation.</p>
-                </div>
-                <!-- Skill Node 02 -->
-                <div class="gsap-reveal glass-panel p-8 group hover:border-white/40 transition-all duration-300">
-                    <span class="text-xs text-gray-500 tracking-widest mb-4 block">02</span>
-                    <h3 class="text-2xl font-bold mb-4">AI System Architecture</h3>
-                    <p class="text-gray-400">Hardened Prompt Design, Meta-Prompting, Chain-of-Thought (CoT), Silent Reasoning Frameworks, Voice User Interface (VUI) Design.</p>
-                </div>
-                <!-- Skill Node 03 -->
-                <div class="gsap-reveal glass-panel p-8 group hover:border-white/40 transition-all duration-300">
-                    <span class="text-xs text-gray-500 tracking-widest mb-4 block">03</span>
-                    <h3 class="text-2xl font-bold mb-4">Automation & BI Ecosystems</h3>
-                    <p class="text-gray-400">Make.com Architectures, UiPath (Studio/Orchestrator), Zapier, SQL Data Modeling, Power BI Analytics, API Orchestration, Web Scraping.</p>
-                </div>
-                <!-- Skill Node 04 -->
-                <div class="gsap-reveal glass-panel p-8 group hover:border-white/40 transition-all duration-300">
-                    <span class="text-xs text-gray-500 tracking-widest mb-4 block">04</span>
-                    <h3 class="text-2xl font-bold mb-4">Cloud Infrastructure & Engineering</h3>
-                    <p class="text-gray-400">AWS Solutions Architecture, Microsoft Azure, Proactive Cloud Cost Governance, Pandas, Streamlit, Data Logging, Telemetry.</p>
-                </div>
-            </div>
+      <!-- Academic & Simulation Credentials -->
+      <div>
+        <div class="mb-8">
+          <span class="text-brand-accent font-mono text-xs uppercase tracking-widest block mb-2">// Track Record</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-white uppercase">Education & Credentials</h3>
+        </div>
+        <div class="space-y-6">
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <span class="text-xs font-mono text-brand-accent uppercase font-bold">Post-Graduate Candidate</span>
+            <h4 class="text-lg font-bold text-white mt-1">Master of Business Administration (MBA)</h4>
+            <p class="text-xs font-mono text-gray-400">Anna University · Data Science, Analytics & AI in Management</p>
+            <span class="inline-block mt-3 text-xs font-mono text-gray-500">2026 - 2028</span>
+          </div>
 
-            <!-- Extended Toolkit Tags -->
-            <div class="gsap-reveal flex flex-wrap gap-3 mt-8">
-                <span class="skill-tag">Data Engineering</span>
-                <span class="skill-tag">Quantitative Analysis</span>
-                <span class="skill-tag">Compliance Management</span>
-                <span class="skill-tag">Market Intelligence</span>
-                <span class="skill-tag">Talent Intelligence</span>
-                <span class="skill-tag">Performance Monitoring</span>
-                <span class="skill-tag">SCRM</span>
-            </div>
-        </section>
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <span class="text-xs font-mono text-brand-cyan uppercase font-bold">Graduated</span>
+            <h4 class="text-lg font-bold text-white mt-1">Bachelor of Commerce (B.Com)</h4>
+            <p class="text-xs font-mono text-gray-400">University of Madras · Business Automation & Data Analysis</p>
+            <span class="inline-block mt-3 text-xs font-mono text-gray-500">2023 - 2026</span>
+          </div>
 
-        <!-- Projects Section -->
-        <section class="min-h-screen px-8 md:px-24 py-24">
-            <h2 class="gsap-reveal text-4xl md:text-6xl font-bold mb-16 border-b border-white/20 pb-8 uppercase tracking-tight">Deployed Architecture</h2>
-            
-            <div class="grid grid-cols-1 gap-12">
-                
-                <!-- S.C.A.M SYSTEM -->
-                <div class="gsap-reveal glass-panel p-8 md:p-12 group hover:border-white/40 transition-all duration-500">
-                    <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-3xl font-bold uppercase">S.C.A.M. SYSTEM</h3>
-                        <button class="ui-interact play-audio-btn bg-white/10 p-3 rounded-full hover:bg-white hover:text-black transition-colors" data-audio="S.C.A.M. System. Engineered an AI-powered enterprise analytics web application designed to detect software redundancy, visualize shadow IT, and calculate wasted run-rate spend. Built entirely from a mobile IDE and deployed to the cloud, this system acts as an automated, hyper-analytical Corporate CIO.">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </button>
-                    </div>
-                    <p class="text-gray-400 mb-8 max-w-4xl text-lg">
-                        <strong>Software Cost & Architecture Monitor.</strong> Engineered an AI-powered enterprise analytics web application designed to detect software redundancy, visualize shadow IT, and calculate wasted run-rate spend. Built entirely from a mobile IDE and deployed to the cloud, this system acts as an automated, hyper-analytical Corporate CIO.
-                    </p>
-                    <a href="https://scam-protocol.streamlit.app/?token=holo-earth" target="_blank" class="ui-interact text-sm uppercase tracking-widest border-b border-white pb-1 hover:text-gray-400">Launch Protocol &rarr;</a>
-                </div>
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex flex-wrap gap-2 text-xs font-mono text-gray-300">
+            <span class="px-3 py-1 rounded bg-brand-surface border border-brand-border">AWS Solutions Architecture</span>
+            <span class="px-3 py-1 rounded bg-brand-surface border border-brand-border">Deloitte Data Analytics</span>
+            <span class="px-3 py-1 rounded bg-brand-surface border border-brand-border">Tata Data Visualisation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <!-- B.L.E.E.D PROTOCOL -->
-                <div class="gsap-reveal glass-panel p-8 md:p-12 group hover:border-white/40 transition-all duration-500">
-                    <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-3xl font-bold uppercase">B.L.E.E.D PROTOCOL</h3>
-                        <button class="ui-interact play-audio-btn bg-white/10 p-3 rounded-full hover:bg-white hover:text-black transition-colors" data-audio="Bleed Protocol. An AI-Powered Enterprise Forensic Auditor designed to ingest corporate master service agreements and detect SLA compliance breaches using deterministic forensic math.">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </button>
-                    </div>
-                    <p class="text-gray-400 mb-8 max-w-4xl text-lg">
-                        <strong>Back-end Legal Evaluation & Expense Diagnostic.</strong> Engineered a multi-modal AI auditing web application designed to ingest corporate master service agreements (PDFs) and raw system logs (CSVs) to autonomously detect SLA compliance breaches. Integrated Google's Gemini AI to execute deterministic forensic math.
-                    </p>
-                    <a href="https://bleed-protocol.streamlit.app/" target="_blank" class="ui-interact text-sm uppercase tracking-widest border-b border-white pb-1 hover:text-gray-400">Launch Protocol &rarr;</a>
-                </div>
+  <!-- ==================== FOOTER & CONTACT ==================== -->
+  <footer class="py-20 px-6 max-w-6xl mx-auto border-t border-brand-border text-center">
+    <h2 class="text-4xl sm:text-6xl font-black text-white uppercase tracking-tight mb-4">
+      LET'S BUILD DETERMINISTIC SYSTEMS.
+    </h2>
+    <p class="text-gray-400 text-sm max-w-xl mx-auto mb-8">
+      Open for strategic management consulting, autonomous AI pipeline architecture, and enterprise digital transformation advisory.
+    </p>
 
-                <!-- J.A.R.V.I.S -->
-                <div class="gsap-reveal glass-panel p-8 md:p-12 group hover:border-white/40 transition-all duration-500">
-                    <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-3xl font-bold uppercase">J.A.R.V.I.S.</h3>
-                        <button class="ui-interact play-audio-btn bg-white/10 p-3 rounded-full hover:bg-white hover:text-black transition-colors" data-audio="JARVIS. Just A Rather Very Intelligent System. A hands-free voice interface layer commanding the HOLO EARTH CORE ecosystem to track macro-logistics friction and automate heuristics.">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </button>
-                    </div>
-                    <p class="text-gray-400 mb-8 max-w-4xl text-lg">
-                        <strong>Just A Rather Very Intelligent System.</strong> A hands-free voice interface layer commanding the HOLO EARTH CORE ecosystem. Functions as a continuous global reconnaissance framework—tracking macro-logistics friction, automating quantitative financial heuristics, and optimizing downstream deep-link navigation.
-                    </p>
-                    <a href="https://jakubarshathikmohammedhussain-j.github.io/JARVIS/" target="_blank" class="ui-interact text-sm uppercase tracking-widest border-b border-white pb-1 hover:text-gray-400">Launch Protocol &rarr;</a>
-                </div>
+    <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+      <a href="mailto:jakubarshathikmohammedhussain@gmail.com" class="px-8 py-4 rounded-xl bg-brand-accent text-black font-extrabold uppercase text-xs tracking-wider hover:bg-[#b8e600] transition-all flex items-center gap-2">
+        <i data-lucide="mail" class="w-4 h-4"></i> jakubarshathikmohammedhussain@gmail.com
+      </a>
+      <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="px-6 py-4 rounded-xl bg-brand-surface border border-brand-border hover:border-brand-accent text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+        <i data-lucide="github" class="w-4 h-4"></i> GitHub Hub
+      </a>
+      <a href="https://www.linkedin.com/in/mohammedhussainj" target="_blank" class="px-6 py-4 rounded-xl bg-brand-surface border border-brand-border hover:border-brand-accent text-white font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+        <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+      </a>
+    </div>
 
-            </div>
-        </section>
+    <div class="text-xs font-mono text-gray-600">
+      © 2026 Mohammed Hussain J · HOLO EARTH CORE OS
+    </div>
+  </footer>
 
-        <footer class="py-12 border-t border-white/10 text-center text-gray-500 text-sm tracking-widest uppercase mt-12">
-            HOLO EARTH CORE SYSTEM ARCHITECTURE &copy; 2026 | MOHAMMED HUSSAIN J.
-        </footer>
-    </main>
+  <!-- ==================== SOUND FX & SPEECH SYNTHESIS ENGINE ==================== -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-    <script>
-        // Automatic Fade-in for Intro Name on load
-        window.addEventListener('DOMContentLoaded', () => {
-            gsap.to('#intro-name', { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 });
-        });
+    let soundEnabled = true;
+    let audioCtx = null;
 
-        // --- 1. Audio Synthesis & UI Sound FX (Web Audio API) ---
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
-        function playHoverBeep() {
-            if(audioCtx.state === 'suspended') return;
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); 
-            oscillator.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.05);
-            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.start();
-            oscillator.stop(audioCtx.currentTime + 0.1);
+    function initAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Native Web Audio API Sound FX Synthesizer (Zero 404s, 100% Reliable)
+    function playSound(type) {
+      if (!soundEnabled) return;
+      try {
+        initAudioContext();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        const now = audioCtx.currentTime;
+
+        if (type === 'hover') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(440, now);
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.04);
+          gain.gain.setValueAtTime(0.02, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+          osc.start(now);
+          osc.stop(now + 0.04);
+        } else if (type === 'click') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(200, now);
+          osc.frequency.exponentialRampToValueAtTime(50, now + 0.08);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } else if (type === 'boot') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.exponentialRampToValueAtTime(660, now + 0.3);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
         }
+      } catch (e) {
+        console.warn('Audio synthesis waiting for user activation');
+      }
+    }
 
-        // --- 2. Text-to-Speech (Web Speech API) ---
-        let synth = window.speechSynthesis;
-        let maleVoice = null;
+    // Attach Hover FX to interactive elements
+    document.querySelectorAll('button, a, .neon-border').forEach(el => {
+      el.addEventListener('mouseenter', () => playSound('hover'));
+      el.addEventListener('click', () => playSound('click'));
+    });
 
-        function setVoice() {
-            const voices = synth.getVoices();
-            maleVoice = voices.find(voice => voice.name.includes('Google UK English Male') || voice.name.includes('David') || voice.name.includes('Mark')) || voices[0];
-        }
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = setVoice;
-        }
+    // Deep Male Voice Selection Heuristic
+    function getDeepMaleVoice() {
+      const voices = window.speechSynthesis.getVoices();
+      let selected = voices.find(v => 
+        (v.name.includes('Male') || v.name.includes('David') || v.name.includes('George') || v.name.includes('Google UK English Male') || v.name.includes('Natural')) && 
+        v.lang.startsWith('en')
+      );
+      if (!selected) {
+        selected = voices.find(v => v.lang.startsWith('en'));
+      }
+      return selected;
+    }
 
-        function speak(text) {
-            synth.cancel(); 
-            const utterance = new SpeechSynthesisUtterance(text);
-            if (maleVoice) utterance.voice = maleVoice;
-            utterance.pitch = 0.8; 
-            utterance.rate = 1.0;
-            synth.speak(utterance);
-        }
+    // Global Executive Profile Voice Briefing
+    function speakProfileSummary() {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
 
-        // --- 3. Interaction & Cinematic Opening Animation ---
-        document.getElementById('init-btn').addEventListener('click', () => {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            
-            // Slide up / open effect matching award-winning portfolio reveals
-            gsap.to('#intro-screen', { 
-                yPercent: -100, 
-                duration: 1.2, 
-                ease: "power4.inOut", 
-                onComplete: () => {
-                    document.getElementById('intro-screen.style').display = 'none';
-                    document.getElementById('main-content').classList.remove('hidden');
-                    document.getElementById('main-content').classList.remove('opacity-0');
-                    
-                    initGSAP();
+      const text = "Welcome. I am Mohammed Hussain. I architect high-velocity operational infrastructure at the intersection of tech strategy, business intelligence, and autonomous systems. Explore my multi-node deployments below.";
+      const utterance = new SpeechSynthesisUtterance(text);
+      
+      const maleVoice = getDeepMaleVoice();
+      if (maleVoice) utterance.voice = maleVoice;
+      utterance.pitch = 0.85; // Deep authoritative tone
+      utterance.rate = 0.95;  // Deliberate consulting pacing
 
-                    // Voice greeting explaining profile summary automatically
-                    speak("Welcome to Holo Earth Core. I am Mohammed Hussain J, Operations and Tech Strategy Consultant. I architect high-velocity operational infrastructure at the intersection of global technology strategy, business intelligence, and data analytics.");
-                }
-            });
-        });
+      window.speechSynthesis.speak(utterance);
+    }
 
-        document.querySelectorAll('.ui-interact').forEach(el => {
-            el.addEventListener('mouseenter', playHoverBeep);
-        });
+    // Project Voice Briefings
+    function speakProjectBriefing(project) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
 
-        document.querySelectorAll('.play-audio-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const textToSpeak = btn.getAttribute('data-audio');
-                speak(textToSpeak);
-            });
-        });
+      let text = "";
+      if (project === 'jarvis') {
+        text = "J.A.R.V.I.S. is the primary hands-free voice interface layer for the HOLO EARTH ecosystem, orchestrating continuous reconnaissance and zero-touch system task execution.";
+      } else if (project === 'bleed') {
+        text = "The B.L.E.E.D. Protocol is an autonomous legal and expense diagnostic auditor that parses master service agreements and raw CSV logs to mathematically isolate financial SLA leakage.";
+      } else if (project === 'scam') {
+        text = "The S.C.A.M. System acts as an automated corporate CIO, mapping software redundancy, isolating shadow IT, and streaming real-time cost telemetry through hierarchical treemaps.";
+      }
 
-        // --- 4. GSAP Scroll Animations ---
-        gsap.registerPlugin(ScrollTrigger);
+      const utterance = new SpeechSynthesisUtterance(text);
+      const maleVoice = getDeepMaleVoice();
+      if (maleVoice) utterance.voice = maleVoice;
+      utterance.pitch = 0.85;
+      utterance.rate = 0.95;
 
-        function initGSAP() {
-            const reveals = document.querySelectorAll('.gsap-reveal');
-            
-            reveals.forEach((element) => {
-                gsap.fromTo(element, 
-                    { y: 50, opacity: 0 },
-                    { 
-                        y: 0, 
-                        opacity: 1, 
-                        duration: 1, 
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: element,
-                            start: "top 85%", 
-                            toggleActions: "play none none reverse"
-                        }
-                    }
-                );
-            });
-        }
-    </script>
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Initial Splash Gate Initialization
+    document.getElementById('gate-btn').addEventListener('click', () => {
+      initAudioContext();
+      playSound('boot');
+      
+      const gate = document.getElementById('audio-gate');
+      gate.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => gate.remove(), 700);
+
+      // Trigger automatic welcome briefing
+      setTimeout(speakProfileSummary, 400);
+    });
+
+    // Audio HUD Toggle
+    const soundToggleBtn = document.getElementById('sound-toggle-btn');
+    const soundStatusText = document.getElementById('sound-status-text');
+    soundToggleBtn.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      if (!soundEnabled) {
+        window.speechSynthesis.cancel();
+        soundStatusText.textContent = 'AUDIO MUTED';
+        soundStatusText.classList.replace('text-gray-300', 'text-red-400');
+      } else {
+        soundStatusText.textContent = 'AUDIO ON';
+        soundStatusText.classList.replace('text-red-400', 'text-gray-300');
+        playSound('boot');
+      }
+    });
+
+    // Ensure voices are loaded in Chromium engines
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        getDeepMaleVoice();
+      };
+    }
+  </script>
 </body>
 </html>
