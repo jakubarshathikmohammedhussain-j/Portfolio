@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Hussain J | Enterprise Architecture</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Cinematic Red Intro Overlay matching the reference video */
+        #intro-screen {
+            position: fixed;
+            inset: 0;
+            background: #e60012;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .hud-line {
+            width: 1px;
+            height: 100vh;
+            background: rgba(255,255,255,0.05);
+            position: fixed;
+            top: 0;
+            z-index: -1;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(255, 255, 255, 1);
+            color: #000;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black">
+
+    <!-- HUD Background Lines -->
+    <div class="hud-line" style="left: 20%"></div>
+    <div class="hud-line" style="left: 50%"></div>
+    <div class="hud-line" style="left: 80%"></div>
+
+    <!-- Cinematic Intro Card (Fades & Opens like the video reference) -->
+    <div id="intro-screen">
+        <div class="text-center px-4">
+            <p class="text-white/80 tracking-[0.4em] text-xs md:text-sm uppercase mb-3 font-medium">POV : When your architecture outperforms your resume. 🔥</p>
+            <h1 id="intro-name" class="text-5xl md:text-8xl font-black tracking-tighter text-white uppercase opacity-0 transform translate-y-4">
+                Mohammed Hussain
+            </h1>
+            <p class="text-white/70 tracking-widest text-xs md:text-sm uppercase mt-6">"Click to Initialize Protocol & Audio System"</p>
+            <button id="init-btn" class="ui-interact mt-8 bg-black text-white px-10 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-2xl">
+                Enter Portfolio Core
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Dashboard -->
+    <main id="main-content" class="opacity-0 hidden">
+        
+        <!-- Hero & Executive Summary Section -->
+        <section class="min-h-screen flex flex-col justify-center px-8 md:px-24 py-32 relative">
+            <p class="gsap-reveal text-sm tracking-[0.3em] text-gray-400 uppercase mb-4">Operations & Tech Strategy Consultant | MBA (Data Analytics & Operations)[span_0](start_span)[span_0](end_span)</p>
+            <h1 class="gsap-reveal text-5xl md:text-8xl font-bold tracking-tighter mb-8 text-glow uppercase">
+                Mohammed <br> Hussain J.
+            </h1>
+            
+            <div class="gsap-reveal max-w-4xl border-l-2 border-white/20 pl-6 space-y-6 text-gray-300 text-lg md:text-xl leading-relaxed">
+                <p>
+                    I architect high-velocity operational infrastructure at the intersection of global technology strategy, business intelligence, and data analytics[span_1](start_span)[span_1](end_span). Traditional business operations suffer from severe data latency—they react to geopolitical friction, market volatility, and regulatory shifts after they happen[span_2](start_span)[span_2](end_span). My focus is engineering the transition from reactive corporate strategy to deterministic, autonomous operations[span_3](start_span)[span_3](end_span).
+                </p>
+                <p>
+                    Rather than waiting for my MBA to begin, I developed HOLO EARTH CORE: a multi-node, AI-driven infrastructure framework built natively via mobile prompting and LLM architectures[span_4](start_span)[span_4](end_span). Commanded by a hands-free voice interface layer (J.A.R.V.I.S.), the ecosystem acts as a continuous global reconnaissance framework—tracking macro-logistics friction, automating quantitative financial heuristics, and optimizing downstream deep-link navigation[span_5](start_span)[span_5](end_span).
+                </p>
+                <p>
+                    Backed by a background in Commerce and hands-on systems architecture, I am an incoming post-graduate candidate in Data Analytics & Operations[span_6](start_span)[span_6](end_span). I am currently targeting strategic planning, tech strategy, and management consulting roles—specifically focusing on high-growth digital transformation, business operations, and automated risk mitigation across global enterprise markets[span_7](start_span)[span_7](end_span).
+                </p>
+            </div>
+            
+            <div class="gsap-reveal mt-12 flex flex-wrap gap-6">
+                <a href="https://github.com/jakubarshathikmohammedhussain-j" target="_blank" class="ui-interact bg-white text-black px-8 py-3 font-bold uppercase tracking-wider hover:bg-gray-300 transition-colors">
+                    View GitHub
+                </a>
+                <a href="https://drive.google.com/drive/folders/1EENo3X0PBlnPYDCqN0almgqLtyUfOcci" target="_blank" class="ui-interact border border-white px-8 py-3 font-bold uppercase tracking-wider hover:bg-white/10 transition-colors">
+                    Holo Earth Core Nodes
+                </a>
+            </div>
+        </section>
+
+        <!-- Core Expertise Matrix -->
+        <section class="min-h-screen px-8 md:px-24 py-24 bg-white/5 border-y border-white/10">
+            <div class="flex justify-between items-end mb-16 border-b border-white/20 pb-8">
+                <h2 class="gsap-reveal text-4xl md:text-6xl font-bold uppercase tracking-tight">Core Expertise Matrix</h2>
+                <p class="gsap-reveal hidden md:block text-gray-400 tracking-widest uppercase text-sm">Operating systems for modern enterprise velocity[span_8](start_span)[span_8](end_span).</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Skill Node 01 -->
+                <div class="gsap-reveal glass-panel p-8 group hover:border-white/40 transition-all duration-300">
+                    <span class="text-xs text-gray-500 tracking-widest mb-4 block">01</span>
+                    <h3 class="text-2xl font-bold mb-4">Management & Operations</h3>
+                    <p class="text-gray-400">Jira Architecture, Six Sigma Process Optimization, Advanced Financial Modeling, Logistics Management, Supply Chain Automation.</p>
+                </div>
+                <!-- Skill Node 02 -->
+                <div class="gsap-reveal glass-panel p-8 group hover:border-white/40 transition-all duration-300">
+                    <span class="text-xs text-gray-500 tracking-widest mb-4 block">02</span>
+                    <h3 class="text-2xl font-bold mb-4">AI System Architecture</h3>
+                    <p class="text-gray-400">Hardened Prompt Design, Meta-Prompting, Chain-of-Thought (CoT), Silent Reasoning Frameworks, Voice User Interface (VUI) Design.</p>
+                </div>
+                <!-- Skill Node 03 -->
+                <div class="gsap-reveal glass-panel p-8 group hover:border-white/40 transition-all duration-300">
+                    <span class="text-xs text-gray-500 tracking-widest mb-4 block">03</span>
+                    <h3 class="text-2xl font-bold mb-4">Automation & BI Ecosystems</h3>
+                    <p class="text-gray-400">Make.com Architectures, UiPath (Studio/Orchestrator), Zapier, SQL Data Modeling, Power BI Analytics, API Orchestration, Web Scraping.</p>
+                </div>
+                <!-- Skill Node 04 -->
+                <div class="gsap-reveal glass-panel p-8 group hover:border-white/40 transition-all duration-300">
+                    <span class="text-xs text-gray-500 tracking-widest mb-4 block">04</span>
+                    <h3 class="text-2xl font-bold mb-4">Cloud Infrastructure & Engineering</h3>
+                    <p class="text-gray-400">AWS Solutions Architecture, Microsoft Azure, Proactive Cloud Cost Governance, Pandas, Streamlit, Data Logging, Telemetry.</p>
+                </div>
+            </div>
+
+            <!-- Extended Toolkit Tags -->
+            <div class="gsap-reveal flex flex-wrap gap-3 mt-8">
+                <span class="skill-tag">Data Engineering</span>
+                <span class="skill-tag">Quantitative Analysis</span>
+                <span class="skill-tag">Compliance Management</span>
+                <span class="skill-tag">Market Intelligence</span>
+                <span class="skill-tag">Talent Intelligence</span>
+                <span class="skill-tag">Performance Monitoring</span>
+                <span class="skill-tag">SCRM</span>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="min-h-screen px-8 md:px-24 py-24">
+            <h2 class="gsap-reveal text-4xl md:text-6xl font-bold mb-16 border-b border-white/20 pb-8 uppercase tracking-tight">Deployed Architecture</h2>
+            
+            <div class="grid grid-cols-1 gap-12">
+                
+                <!-- S.C.A.M SYSTEM -->
+                <div class="gsap-reveal glass-panel p-8 md:p-12 group hover:border-white/40 transition-all duration-500">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-3xl font-bold uppercase">S.C.A.M. SYSTEM</h3>
+                        <button class="ui-interact play-audio-btn bg-white/10 p-3 rounded-full hover:bg-white hover:text-black transition-colors" data-audio="S.C.A.M. System. Engineered an AI-powered enterprise analytics web application designed to detect software redundancy, visualize shadow IT, and calculate wasted run-rate spend. Built entirely from a mobile IDE and deployed to the cloud, this system acts as an automated, hyper-analytical Corporate CIO.">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                    </div>
+                    <p class="text-gray-400 mb-8 max-w-4xl text-lg">
+                        <strong>Software Cost & Architecture Monitor.</strong> Engineered an AI-powered enterprise analytics web application designed to detect software redundancy, visualize shadow IT, and calculate wasted run-rate spend. Built entirely from a mobile IDE and deployed to the cloud, this system acts as an automated, hyper-analytical Corporate CIO.
+                    </p>
+                    <a href="https://scam-protocol.streamlit.app/?token=holo-earth" target="_blank" class="ui-interact text-sm uppercase tracking-widest border-b border-white pb-1 hover:text-gray-400">Launch Protocol &rarr;</a>
+                </div>
+
+                <!-- B.L.E.E.D PROTOCOL -->
+                <div class="gsap-reveal glass-panel p-8 md:p-12 group hover:border-white/40 transition-all duration-500">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-3xl font-bold uppercase">B.L.E.E.D PROTOCOL</h3>
+                        <button class="ui-interact play-audio-btn bg-white/10 p-3 rounded-full hover:bg-white hover:text-black transition-colors" data-audio="Bleed Protocol. An AI-Powered Enterprise Forensic Auditor designed to ingest corporate master service agreements and detect SLA compliance breaches using deterministic forensic math.">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                    </div>
+                    <p class="text-gray-400 mb-8 max-w-4xl text-lg">
+                        <strong>Back-end Legal Evaluation & Expense Diagnostic.</strong> Engineered a multi-modal AI auditing web application designed to ingest corporate master service agreements (PDFs) and raw system logs (CSVs) to autonomously detect SLA compliance breaches. Integrated Google's Gemini AI to execute deterministic forensic math.
+                    </p>
+                    <a href="https://bleed-protocol.streamlit.app/" target="_blank" class="ui-interact text-sm uppercase tracking-widest border-b border-white pb-1 hover:text-gray-400">Launch Protocol &rarr;</a>
+                </div>
+
+                <!-- J.A.R.V.I.S -->
+                <div class="gsap-reveal glass-panel p-8 md:p-12 group hover:border-white/40 transition-all duration-500">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-3xl font-bold uppercase">J.A.R.V.I.S.</h3>
+                        <button class="ui-interact play-audio-btn bg-white/10 p-3 rounded-full hover:bg-white hover:text-black transition-colors" data-audio="JARVIS. Just A Rather Very Intelligent System. A hands-free voice interface layer commanding the HOLO EARTH CORE ecosystem to track macro-logistics friction and automate heuristics.">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                    </div>
+                    <p class="text-gray-400 mb-8 max-w-4xl text-lg">
+                        <strong>Just A Rather Very Intelligent System.</strong> A hands-free voice interface layer commanding the HOLO EARTH CORE ecosystem. Functions as a continuous global reconnaissance framework—tracking macro-logistics friction, automating quantitative financial heuristics, and optimizing downstream deep-link navigation.
+                    </p>
+                    <a href="https://jakubarshathikmohammedhussain-j.github.io/JARVIS/" target="_blank" class="ui-interact text-sm uppercase tracking-widest border-b border-white pb-1 hover:text-gray-400">Launch Protocol &rarr;</a>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="py-12 border-t border-white/10 text-center text-gray-500 text-sm tracking-widest uppercase mt-12">
+            HOLO EARTH CORE SYSTEM ARCHITECTURE &copy; 2026 | MOHAMMED HUSSAIN J.
+        </footer>
+    </main>
+
+    <script>
+        // Automatic Fade-in for Intro Name on load
+        window.addEventListener('DOMContentLoaded', () => {
+            gsap.to('#intro-name', { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 });
+        });
+
+        // --- 1. Audio Synthesis & UI Sound FX (Web Audio API) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playHoverBeep() {
+            if(audioCtx.state === 'suspended') return;
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); 
+            oscillator.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.05);
+            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // --- 2. Text-to-Speech (Web Speech API) ---
+        let synth = window.speechSynthesis;
+        let maleVoice = null;
+
+        function setVoice() {
+            const voices = synth.getVoices();
+            maleVoice = voices.find(voice => voice.name.includes('Google UK English Male') || voice.name.includes('David') || voice.name.includes('Mark')) || voices[0];
+        }
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = setVoice;
+        }
+
+        function speak(text) {
+            synth.cancel(); 
+            const utterance = new SpeechSynthesisUtterance(text);
+            if (maleVoice) utterance.voice = maleVoice;
+            utterance.pitch = 0.8; 
+            utterance.rate = 1.0;
+            synth.speak(utterance);
+        }
+
+        // --- 3. Interaction & Cinematic Opening Animation ---
+        document.getElementById('init-btn').addEventListener('click', () => {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            // Slide up / open effect matching award-winning portfolio reveals
+            gsap.to('#intro-screen', { 
+                yPercent: -100, 
+                duration: 1.2, 
+                ease: "power4.inOut", 
+                onComplete: () => {
+                    document.getElementById('intro-screen.style').display = 'none';
+                    document.getElementById('main-content').classList.remove('hidden');
+                    document.getElementById('main-content').classList.remove('opacity-0');
+                    
+                    initGSAP();
+
+                    // Voice greeting explaining profile summary automatically
+                    speak("Welcome to Holo Earth Core. I am Mohammed Hussain J, Operations and Tech Strategy Consultant. I architect high-velocity operational infrastructure at the intersection of global technology strategy, business intelligence, and data analytics.");
+                }
+            });
+        });
+
+        document.querySelectorAll('.ui-interact').forEach(el => {
+            el.addEventListener('mouseenter', playHoverBeep);
+        });
+
+        document.querySelectorAll('.play-audio-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const textToSpeak = btn.getAttribute('data-audio');
+                speak(textToSpeak);
+            });
+        });
+
+        // --- 4. GSAP Scroll Animations ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        function initGSAP() {
+            const reveals = document.querySelectorAll('.gsap-reveal');
+            
+            reveals.forEach((element) => {
+                gsap.fromTo(element, 
+                    { y: 50, opacity: 0 },
+                    { 
+                        y: 0, 
+                        opacity: 1, 
+                        duration: 1, 
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%", 
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+        }
+    </script>
+</body>
+</html>
